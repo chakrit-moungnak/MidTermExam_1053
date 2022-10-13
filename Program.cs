@@ -14,6 +14,10 @@ enum Religion{
     Buddhism = 1, Christianity = 2, Islam = 3, Other = 4
 }
 
+enum Car{
+    Yes = 1, No = 2
+}
+
 enum Admin{
     Yes = 1, No = 2
 }
@@ -71,9 +75,13 @@ class Program {
         InputNewAttendance();
     }
 
-    static void ShowAttendanceScreen(){}
+    static void ShowAttendanceScreen(){
+        Console.Clear();
+    }
 
-    static void ShowLoginScreen(){}
+    static void ShowLoginScreen(){
+        Console.Clear();
+    }
 
     static void PrintHeaderRegistration(){
         Console.WriteLine(" Register new attendance ");
@@ -127,14 +135,32 @@ class Program {
 
     static void ShowRegistrationStudentScreen(){
         Console.Clear();
+
+        PrintHeaderStudentRegistration();
+
+        InputNewStudent();
     }
 
     static void ShowRegistrationTeacherScreen(){
         Console.Clear();
+
+        PrintHeaderTeacherRegistration();
+
+        InputNewTeacher();
     }
 
     static void PrintHeaderCurrentStudentRegistration(){
-        Console.WriteLine(" Register : CurrentStudent ");
+        Console.WriteLine(" Register : Current student ");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void PrintHeaderStudentRegistration(){
+        Console.WriteLine(" Register : Student ");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void PrintHeaderTeacherRegistration(){
+        Console.WriteLine(" Register : Teacher ");
         Console.WriteLine("---------------------------------------------------");
     }
 
@@ -144,6 +170,34 @@ class Program {
 
         Currentstudent currentstudent = new Currentstudent(InputSurname(), InputStudentID(), InputAge(),
          InputAllergy(), InputReligion(), InputAdmin(), InputEmail(), InputPassword());
+        
+        BackToMainMenu();
+    }
+
+    static void InputNewStudent(){
+        Console.Clear();
+        PrintHeaderStudentRegistration();
+
+        Student student = new Student(InputSurname(), InputAge(),InputLevelOfEducation(),
+         InputAllergy(), InputReligion(), InputSchool());
+
+        BackToMainMenu();
+    }
+
+    static void InputNewTeacher(){
+        Console.Clear();
+        PrintHeaderTeacherRegistration();
+
+        Teacher teacher = new Teacher(InputSurname(), InputAge(), InputPosition(),
+         InputAllergy(), InputReligion(), InputCarRegistration(), InputAdmin(), InputEmail(), InputPassword());
+
+        BackToMainMenu();
+    }
+
+    static void BackToMainMenu(){
+        Console.Clear();
+        PrintMenu();
+        InputSelectedMenu();
     }
 
     static void AddAttendanceListWhenProgramIsLoad(){
@@ -189,8 +243,20 @@ class Program {
         return Console.ReadLine();
     }
 
+    static int InputLevelOfEducation(){
+        Console.Write("Level of education (4-6):");
+
+        return int.Parse(Console.ReadLine());
+    }
+
     static string InputAge(){
         Console.Write("Age : ");
+
+        return Console.ReadLine();
+    }
+
+    static string InputPosition(){
+        Console.Write("Position : ");
 
         return Console.ReadLine();
     }
@@ -208,7 +274,7 @@ class Program {
         return Console.ReadLine();
     }
     static void ChoseReligion(){
-        Console.Write(" Please select Religion (1.Buddhism, 2.christianity, 3.islam, 4.Other) : ");
+        Console.Write("Please select Religion (1.Buddhism, 2.christianity, 3.islam, 4.Other) : ");
         Religion religion = (Religion)(int.Parse(Console.ReadLine()));
 
         SelectReligion(religion);
@@ -230,14 +296,46 @@ class Program {
     }
 
     static string InputReligionInfo(){
-        Console.WriteLine("Please input your religion : ");
+        Console.Write("Please input your religion : ");
 
         return Console.ReadLine();
     }
 
+    static string InputSchool(){
+        Console.Write("School :");
+
+        return Console.ReadLine();
+    }
+
+    static string InputCarRegistration(){
+        Carconfirm();
+
+        Console.WriteLine("Car registration (If you have a car):");
+
+        return Console.ReadLine();
+    }
+
+    static void Carconfirm(){
+        Console.Write("Are you bring a car to join the camp? (1.Yes, 2.No): ");
+         Car car = (Car)(int.Parse(Console.ReadLine()));
+
+        BringCarConfirm(car);
+    }
+
+    static void BringCarConfirm(Car car){
+        switch(car) {
+            case Car.Yes : Console.WriteLine("Bring a car : Yes I do ");
+                break;
+            case Car.No : Console.WriteLine("Bring a car : No ");
+                break;
+            default :
+                break; 
+        }
+    }
+
     static string InputAdmin(){
         AdminConfirm();
-        Console.WriteLine("More details(Optional):");
+        Console.WriteLine("More details (Optional):");
 
         return Console.ReadLine();
     }
@@ -251,9 +349,9 @@ class Program {
 
     static void AdministratorConfirm(Admin admin){
         switch(admin) {
-            case Admin.Yes : Console.Write("Admin position : Yes I am ");
+            case Admin.Yes : Console.WriteLine("Admin position : Yes I am ");
                 break;
-            case Admin.No : Console.Write("Admin position : No ");
+            case Admin.No : Console.WriteLine("Admin position : No ");
                 break;
             default :
                 break; 
@@ -272,6 +370,3 @@ class Program {
         return Console.ReadLine();
     }
 }
-
-
-
