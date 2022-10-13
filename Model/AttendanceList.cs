@@ -17,18 +17,15 @@ class AttendanceList {
         Console.WriteLine("---------------------------------------------------");
 
         foreach(Attendance attendance in this.attendancelist){
-            if (attendance is Currentstudent){
-                Console.WriteLine("{0} \n Type : Current student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
-                , attendance.GetName(), attendance.GetAge(), 
-                attendance.GetAllergy(), attendance.GetReligion());
+            if (attendance is Attendance){
+                Console.WriteLine("{0}"
+                , attendance.GetName());
             } else if (attendance is Student){
-                Console.WriteLine("{0} \n Type : Student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
-                , attendance.GetName(), attendance.GetAge(), 
-                attendance.GetAllergy(), attendance.GetReligion());
+                Console.WriteLine("{0}"
+                , attendance.GetName());
             } else if (attendance is Teacher){
-                Console.WriteLine("{0} \n Type : Student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
-                , attendance.GetName(), attendance.GetAge(), 
-                attendance.GetAllergy(), attendance.GetReligion());
+                Console.WriteLine("{0}"
+                , attendance.GetName());
             }
         }
     }

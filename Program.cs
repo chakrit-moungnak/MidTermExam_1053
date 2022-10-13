@@ -1,9 +1,13 @@
-﻿enum Menu {
+﻿enum Menu{
     RegistrationToCamp = 1, ShowAttendanceStatistics = 2, Login = 3
 }
 
 enum RegistrationType{
     CurrentStudent = 1, Student = 2, Teacher = 3
+}
+
+enum ShowAttendanceStatistics{
+    ShowCurrentStudent = 1, ShowStudent = 2, ShowTeacher = 3
 }
 
 enum NamePrefix{
@@ -25,6 +29,10 @@ enum Admin{
 class Program {
 
     static AttendanceList attendancelist;
+    static CurrentStudentList currentstudentlist;
+    static StudentList studentlist;
+
+    static TeacherList teacherlist;
 
     static void Main(string[] args) {
         AddAttendanceListWhenProgramIsLoad();
@@ -77,6 +85,10 @@ class Program {
 
     static void ShowAttendanceScreen(){
         Console.Clear();
+
+        PrintHeaderAttendance();
+
+        InputNewAttendanceStatistics();
     }
 
     static void ShowLoginScreen(){
@@ -88,6 +100,11 @@ class Program {
         Console.WriteLine("---------------------------------------------------");
     }
 
+    static void PrintHeaderAttendance(){
+        Console.WriteLine(" Show attendance statistics");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
     static void InputNewAttendance(){
         Console.Clear();
         PrintHeaderRegistration();
@@ -96,20 +113,44 @@ class Program {
         InputSelectedType();
     }
 
+    static void InputNewAttendanceStatistics(){
+        Console.Clear();
+        PrintHeaderAttendance();
+
+        PrintAttendanceType();
+        InputAttendanceType();
+    }
+
     static void PrintRegisterType(){
-        Console.WriteLine(" Please Select register type ");
+        Console.WriteLine("Please Select register type ");
         Console.WriteLine("---------------------------------------------------");
-        Console.WriteLine(" 1.Current student ");
-        Console.WriteLine(" 2.Student ");
-        Console.WriteLine(" 3.Teacher ");
+        Console.WriteLine("1.Current student ");
+        Console.WriteLine("2.Student ");
+        Console.WriteLine("3.Teacher ");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void PrintAttendanceType(){
+        Console.WriteLine("Please Select Attendance type to show ");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("1.Current student ");
+        Console.WriteLine("2.Student ");
+        Console.WriteLine("3.Teacher ");
         Console.WriteLine("---------------------------------------------------");
     }
 
     static void InputSelectedType(){
-        Console.Write("Please input selected menu : ");
+        Console.Write("Please input selected Type : ");
         RegistrationType type = (RegistrationType)(int.Parse(Console.ReadLine()));
 
         SelectType(type);
+    }
+
+    static void InputAttendanceType(){
+        Console.Write("Please input selected Type : ");
+        ShowAttendanceStatistics showstatistics = (ShowAttendanceStatistics)(int.Parse(Console.ReadLine()));
+
+        SelectStatisticsType(showstatistics);
     }
 
     static void SelectType(RegistrationType type){
@@ -119,6 +160,19 @@ class Program {
             case RegistrationType.Student : ShowRegistrationStudentScreen();
                 break;
             case RegistrationType.Teacher : ShowRegistrationTeacherScreen();
+                break;
+            default :
+                break; 
+        }
+    }
+
+    static void SelectStatisticsType(ShowAttendanceStatistics showstatistics){
+        switch(showstatistics) {
+            case ShowAttendanceStatistics.ShowCurrentStudent : ShowCurrentStudentStatistics();
+                break;
+            case ShowAttendanceStatistics.ShowStudent : ShowStudentStatistics();
+                break;
+            case ShowAttendanceStatistics.ShowTeacher : ShowTeacherStatistics();
                 break;
             default :
                 break; 
@@ -149,6 +203,24 @@ class Program {
         InputNewTeacher();
     }
 
+    static void ShowCurrentStudentStatistics(){
+        Console.Clear();
+
+        PrintCurrentStudentStatistics();
+    }
+
+    static void ShowStudentStatistics(){
+        Console.Clear();
+
+        PrintStudentStatistics();
+    }
+
+    static void ShowTeacherStatistics(){
+        Console.Clear();
+
+        PrintTeacherStatistics();
+    }
+
     static void PrintHeaderCurrentStudentRegistration(){
         Console.WriteLine(" Register : Current student ");
         Console.WriteLine("---------------------------------------------------");
@@ -164,12 +236,38 @@ class Program {
         Console.WriteLine("---------------------------------------------------");
     }
 
+    static void PrintCurrentStudentStatistics(){
+        Console.WriteLine(" Show attendance statistics : Current student ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.currentstudentlist.ShowTotalCurrentStudent();
+        BackToMainMenu();
+    }
+    
+    static void PrintStudentStatistics(){
+        Console.WriteLine(" Show attendance statistics : Student ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.studentlist.ShowTotalStudent();
+        BackToMainMenu();
+    }
+
+    static void PrintTeacherStatistics(){
+        Console.WriteLine(" Show attendance statistics : Teacher ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.teacherlist.ShowTotalTeacher();
+        BackToMainMenu();
+    }
+
     static void InputNewCurrentStudent(){
         Console.Clear();
         PrintHeaderCurrentStudentRegistration();
 
-        Currentstudent currentstudent = new Currentstudent(InputSurname(), InputStudentID(), InputAge(),
+        CurrentStudent currentstudent = new CurrentStudent(InputNamePrefix(), InputName(), InputSurname(), InputStudentID(), InputAge(),
          InputAllergy(), InputReligion(), InputAdmin(), InputEmail(), InputPassword());
+        
+        Program.currentstudentlist.AddNewCurrentStudentList(currentstudent);
         
         BackToMainMenu();
     }
@@ -178,8 +276,10 @@ class Program {
         Console.Clear();
         PrintHeaderStudentRegistration();
 
-        Student student = new Student(InputSurname(), InputAge(),InputLevelOfEducation(),
+        Student student = new Student(InputNamePrefix(), InputName(), InputSurname(), InputAge(),InputLevelOfEducation(),
          InputAllergy(), InputReligion(), InputSchool());
+
+         Program.studentlist.AddNewStudentList(student);
 
         BackToMainMenu();
     }
@@ -188,8 +288,10 @@ class Program {
         Console.Clear();
         PrintHeaderTeacherRegistration();
 
-        Teacher teacher = new Teacher(InputSurname(), InputAge(), InputPosition(),
+        Teacher teacher = new Teacher(InputNamePrefix(), InputName(), InputSurname(), InputAge(), InputPosition(),
          InputAllergy(), InputReligion(), InputCarRegistration(), InputAdmin(), InputEmail(), InputPassword());
+
+         Program.teacherlist.AddNewTeacherList(teacher);
 
         BackToMainMenu();
     }
@@ -202,38 +304,55 @@ class Program {
 
     static void AddAttendanceListWhenProgramIsLoad(){
         Program.attendancelist = new AttendanceList();
+        Program.currentstudentlist = new CurrentStudentList();
+        Program.studentlist = new StudentList();
+        Program.teacherlist = new TeacherList();
     }
 
-    static void InputNamePrefix(){
+    static string InputNamePrefix(){
         Console.Write(" Please select name prefix (1.Mr, 2.Mrs, 3.Miss): ");
         NamePrefix prefix = (NamePrefix)(int.Parse(Console.ReadLine()));
 
         SelectNamePrefix(prefix);
+        return (prefix.ToString());
     }
 
     static void SelectNamePrefix(NamePrefix prefix){
         switch(prefix) {
-            case NamePrefix.Mr : Console.Write("Name : Mr.");
+            case NamePrefix.Mr : MrSelected();
                 break;
-            case NamePrefix.Mrs : Console.Write("Name : Mrs. ");
+            case NamePrefix.Mrs : MrsSelected();;
                 break;
-            case NamePrefix.Miss : Console.Write("Name : Miss. ");
+            case NamePrefix.Miss : MissSelected();;
                 break;
             default :
                 break; 
         }
     }
 
+    static string MrSelected(){
+        Console.Write("Name : Mr.");
+        return "Mr.";
+    }
 
-    static string InputSurname(){
-        InputNamePrefix();
-        InputName();
-        Console.Write("Surname : ");
+    static string MrsSelected(){
+        Console.Write("Name : Mrs.");
+        return "Mrs.";
+    }
+
+    static string MissSelected(){
+        Console.Write("Name : Miss.");
+        return "Miss.";
+    }
+
+    static string InputName(){
 
         return Console.ReadLine();
     }
 
-    static string InputName(){
+    static string InputSurname(){
+        Console.Write("Surname : ");
+
         return Console.ReadLine();
     }
 
@@ -335,7 +454,7 @@ class Program {
 
     static string InputAdmin(){
         AdminConfirm();
-        Console.WriteLine("More details (Optional):");
+        Console.Write("More details (Optional):");
 
         return Console.ReadLine();
     }
