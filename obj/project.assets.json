@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Yee\\Desktop\\ExamCode\\ExamCode.csproj",
+      "projectUniqueName": "C:\\Users\\Yee\\Desktop\\MidTermExam_1053\\ExamCode.csproj",
       "projectName": "ExamCode",
-      "projectPath": "C:\\Users\\Yee\\Desktop\\ExamCode\\ExamCode.csproj",
+      "projectPath": "C:\\Users\\Yee\\Desktop\\MidTermExam_1053\\ExamCode.csproj",
       "packagesPath": "C:\\Users\\Yee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Yee\\Desktop\\ExamCode\\obj\\",
+      "outputPath": "C:\\Users\\Yee\\Desktop\\MidTermExam_1053\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -142,8 +142,8 @@ class Program {
         Console.Clear();
         PrintHeaderCurrentStudentRegistration();
 
-        Currentstudent currentstudent = new Currentstudent(InputNamePrefix(), InputName(), InputSurname(), 
-        InputStudentID(), InputAge(), InputAllergy(), InputReligion(), InputAdmin(), InputEmail(), InputPassword());
+        Currentstudent currentstudent = new Currentstudent(InputSurname(), InputStudentID(), InputAge(),
+         InputAllergy(), InputReligion(), InputAdmin(), InputEmail(), InputPassword());
     }
 
     static void AddAttendanceListWhenProgramIsLoad(){
@@ -151,7 +151,7 @@ class Program {
     }
 
     static void InputNamePrefix(){
-        Console.WriteLine(" Please select name prefix (1.Mr, 2.Mrs, 3.Miss): ");
+        Console.Write(" Please select name prefix (1.Mr, 2.Mrs, 3.Miss): ");
         NamePrefix prefix = (NamePrefix)(int.Parse(Console.ReadLine()));
 
         SelectNamePrefix(prefix);
@@ -159,11 +159,11 @@ class Program {
 
     static void SelectNamePrefix(NamePrefix prefix){
         switch(prefix) {
-            case NamePrefix.Mr : Console.Write("Mr. ");
+            case NamePrefix.Mr : Console.Write("Name : Mr.");
                 break;
-            case NamePrefix.Mrs : Console.Write("Mrs. ");
+            case NamePrefix.Mrs : Console.Write("Name : Mrs. ");
                 break;
-            case NamePrefix.Miss : Console.Write("Miss. ");
+            case NamePrefix.Miss : Console.Write("Name : Miss. ");
                 break;
             default :
                 break; 
@@ -171,38 +171,44 @@ class Program {
     }
 
 
-    static string InputName(){
-        Console.Write(" ");
+    static string InputSurname(){
+        InputNamePrefix();
+        InputName();
+        Console.Write("Surname : ");
 
         return Console.ReadLine();
     }
 
-    static string InputSurname(){
-        Console.Write(" ");
-
+    static string InputName(){
         return Console.ReadLine();
     }
 
     static string InputStudentID(){
-        Console.WriteLine("StudentID : ");
+        Console.Write("StudentID : ");
 
         return Console.ReadLine();
     }
 
     static string InputAge(){
-        Console.WriteLine("Age : ");
+        Console.Write("Age : ");
 
         return Console.ReadLine();
     }
 
     static string InputAllergy(){
-        Console.WriteLine("Are you allergic to something? (Input allergic or none): ");
+        Console.Write("Are you allergic to something? (Input allergic or none): ");
 
         return Console.ReadLine();
     }
 
-    static void InputReligion(){
-        Console.WriteLine(" Please select Religion (1.Buddhism, 2.christianity, 3.islam, 4.Other) : ");
+    static string InputReligion(){
+        ChoseReligion();
+        Console.Write("More details(Optional):");
+
+        return Console.ReadLine();
+    }
+    static void ChoseReligion(){
+        Console.Write(" Please select Religion (1.Buddhism, 2.christianity, 3.islam, 4.Other) : ");
         Religion religion = (Religion)(int.Parse(Console.ReadLine()));
 
         SelectReligion(religion);
@@ -210,11 +216,11 @@ class Program {
 
     static void SelectReligion(Religion religion){
         switch(religion) {
-            case Religion.Buddhism : Console.Write("Buddhism ");
+            case Religion.Buddhism : Console.WriteLine("Religion : Buddhism ");
                 break;
-            case Religion.Christianity : Console.Write("Christianity ");
+            case Religion.Christianity : Console.WriteLine("Religion : Christianity ");
                 break;
-            case Religion.Islam : Console.Write("Islam ");
+            case Religion.Islam : Console.WriteLine("Religion : Islam ");
                 break;
             case Religion.Other : InputReligionInfo();
                 break;
@@ -229,8 +235,15 @@ class Program {
         return Console.ReadLine();
     }
 
-    static void InputAdmin(){
-        Console.WriteLine("Are you an administrator? (1.Yes, 2.No): ");
+    static string InputAdmin(){
+        AdminConfirm();
+        Console.WriteLine("More details(Optional):");
+
+        return Console.ReadLine();
+    }
+
+    static void AdminConfirm(){
+        Console.Write("Are you an administrator? (1.Yes, 2.No): ");
         Admin admin = (Admin)(int.Parse(Console.ReadLine()));
 
         AdministratorConfirm(admin);
@@ -238,9 +251,9 @@ class Program {
 
     static void AdministratorConfirm(Admin admin){
         switch(admin) {
-            case Admin.Yes : Console.Write("Yes I am ");
+            case Admin.Yes : Console.Write("Admin position : Yes I am ");
                 break;
-            case Admin.No : Console.Write("No ");
+            case Admin.No : Console.Write("Admin position : No ");
                 break;
             default :
                 break; 
@@ -248,13 +261,13 @@ class Program {
     }
 
     static string InputEmail(){
-        Console.WriteLine("Please input your Email (If you an administrator): ");
+        Console.Write("Please input your Email (If you an administrator): ");
 
         return Console.ReadLine();
     }
 
     static string InputPassword(){
-        Console.WriteLine("Please input your password (If you an administrator): ");
+        Console.Write("Please input your password (If you an administrator): ");
 
         return Console.ReadLine();
     }

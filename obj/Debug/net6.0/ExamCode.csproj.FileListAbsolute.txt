@@ -1,0 +1,15 @@
+C:\Users\Yee\Desktop\MidTermExam_1053\bin\Debug\net6.0\ExamCode.exe
+C:\Users\Yee\Desktop\MidTermExam_1053\bin\Debug\net6.0\ExamCode.deps.json
+C:\Users\Yee\Desktop\MidTermExam_1053\bin\Debug\net6.0\ExamCode.runtimeconfig.json
+C:\Users\Yee\Desktop\MidTermExam_1053\bin\Debug\net6.0\ExamCode.dll
+C:\Users\Yee\Desktop\MidTermExam_1053\bin\Debug\net6.0\ExamCode.pdb
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.csproj.AssemblyReference.cache
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.AssemblyInfoInputs.cache
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.AssemblyInfo.cs
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.csproj.CoreCompileInputs.cache
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.dll
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\refint\ExamCode.dll
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.pdb
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ExamCode.genruntimeconfig.cache
+C:\Users\Yee\Desktop\MidTermExam_1053\obj\Debug\net6.0\ref\ExamCode.dll

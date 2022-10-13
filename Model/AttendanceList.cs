@@ -18,16 +18,16 @@ class AttendanceList {
 
         foreach(Attendance attendance in this.attendancelist){
             if (attendance is Currentstudent){
-                Console.WriteLine("{0}{1} {2} \n Type : Current student \n Age : {3} \n Allergy : {4} \n Religion : {5} \n"
-                , attendance.GetNamePrefix(), attendance.GetName(), attendance.GetSurname(), attendance.GetAge(), 
+                Console.WriteLine("{0} \n Type : Current student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
+                , attendance.GetName(), attendance.GetAge(), 
                 attendance.GetAllergy(), attendance.GetReligion());
             } else if (attendance is Student){
-                Console.WriteLine("{0}{1} {2} \n Type : Student \n Age : {3} \n Allergy : {4} \n Religion : {5} \n"
-                , attendance.GetNamePrefix(), attendance.GetName(), attendance.GetSurname(), attendance.GetAge(), 
+                Console.WriteLine("{0} \n Type : Student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
+                , attendance.GetName(), attendance.GetAge(), 
                 attendance.GetAllergy(), attendance.GetReligion());
             } else if (attendance is Teacher){
-                Console.WriteLine("{0}{1} {2} \n Type : Student \n Age : {3} \n Allergy : {4} \n Religion : {5} \n"
-                , attendance.GetNamePrefix(), attendance.GetName(), attendance.GetSurname(), attendance.GetAge(), 
+                Console.WriteLine("{0} \n Type : Student \n Age : {1} \n Allergy : {2} \n Religion : {3} \n"
+                , attendance.GetName(), attendance.GetAge(), 
                 attendance.GetAllergy(), attendance.GetReligion());
             }
         }
