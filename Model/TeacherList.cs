@@ -18,8 +18,8 @@ class TeacherList {
 
         foreach(Teacher teacher in this.teacherlist){
             if (teacher is Teacher){
-                Console.WriteLine("{0} {1}"
-                , teacher.GetName(), teacher.GetSurName());
+                Console.WriteLine("{0} {1} {2}"
+                ,teacher.GetNamePrefix(), teacher.GetName(), teacher.GetSurName());
             }
         }
          Console.ReadLine();
