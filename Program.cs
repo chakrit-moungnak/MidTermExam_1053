@@ -133,7 +133,7 @@ class Program {
         InputAttendanceType();
     }
 
-    static void InputNewLogin(){
+    static void InputNewLogin(){//ผมพยายามหาวิธี ทำให้ค่าinputถูกเช็คจากข้อมูลใน list แต่ทำยังไงก็ eror ตลอด ผมต้องขอโทษที่ทำไม่ได้ด้วยครับ คราวหน้าผมจะพยายามกว่านี้ 
         Console.Clear();
         PrintHeaderLogin();
         
@@ -194,7 +194,7 @@ class Program {
         Console.WriteLine("---------------------------------------------------");
     }
 
-    static void SelectLoginMenu(){
+    static void SelectLoginMenu(){ //ผมพยายามใช้ enum แล้วแต่มัน eror ตลอดเลยครับ
         Console.Write("Please input selected menu : ");
         int loginmenu = int.Parse(Console.ReadLine());
 
