@@ -1,4 +1,4 @@
-﻿enum Menu{
+enum Menu{
     RegistrationToCamp = 1, ShowAttendanceStatistics = 2, Login = 3
 }
 
@@ -26,6 +26,9 @@ enum Admin{
     Yes = 1, No = 2
 }
 
+enum LoginMenu {
+    Registration = 1, ShowListCurrentStudent = 2, ShowListStudent = 3, ShowListTeacher = 4
+}
 class Program {
 
     static AttendanceList attendancelist;
@@ -93,6 +96,10 @@ class Program {
 
     static void ShowLoginScreen(){
         Console.Clear();
+
+        PrintHeaderLogin();
+
+        InputNewLogin();
     }
 
     static void PrintHeaderRegistration(){
@@ -102,6 +109,11 @@ class Program {
 
     static void PrintHeaderAttendance(){
         Console.WriteLine(" Show attendance statistics");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void PrintHeaderLogin(){
+        Console.WriteLine(" Login ");
         Console.WriteLine("---------------------------------------------------");
     }
 
@@ -119,6 +131,14 @@ class Program {
 
         PrintAttendanceType();
         InputAttendanceType();
+    }
+
+    static void InputNewLogin(){
+        Console.Clear();
+        PrintHeaderLogin();
+        
+        LoginMenu();
+        SelectLoginMenu();
     }
 
     static void PrintRegisterType(){
@@ -151,6 +171,84 @@ class Program {
         ShowAttendanceStatistics showstatistics = (ShowAttendanceStatistics)(int.Parse(Console.ReadLine()));
 
         SelectStatisticsType(showstatistics);
+    }
+
+    static void MainMenu(){
+        Console.Clear();
+        Console.Write("Welcome to the camp");
+
+        LoginMenu();
+        SelectLoginMenu();
+    }
+    
+    
+    
+    static void LoginMenu(){
+        Console.WriteLine("Please Select Menu ");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("1.Registration into the camp ");
+        Console.WriteLine("2.Show total attendance of current student ");
+        Console.WriteLine("3.Show total attendance of student ");
+        Console.WriteLine("4.Show total attendance of teacher ");
+        Console.WriteLine("5.Log out ");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void SelectLoginMenu(){
+        Console.Write("Please input selected menu : ");
+        int loginmenu = int.Parse(Console.ReadLine());
+
+        if (loginmenu == 1){
+            ShowRegistrationMainScreen();
+        }
+        if (loginmenu == 2){
+            ShowListCurrentStudent();
+        }
+        if (loginmenu == 3){
+            ShowListStudent();
+        }
+        if (loginmenu == 4){
+            ShowListTeacher();
+        } else {
+            Logout();
+        }
+
+        
+    }
+
+    static void ShowRegistrationMainScreen(){
+        ShowRegistrationScreen();
+    }
+    static void ShowListCurrentStudent(){
+        Console.Clear();
+        Console.WriteLine(" Show attendance statistics : Teacher ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.currentstudentlist.FetchCurrentStudentList();
+        MainMenu();
+    }
+
+    static void ShowListStudent(){
+        Console.Clear();
+        Console.WriteLine(" Show attendance statistics : Teacher ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.studentlist.FetchStudentList();
+        MainMenu();
+    }
+
+    static void ShowListTeacher(){
+        Console.Clear();
+        Console.WriteLine(" Show attendance statistics : Teacher ");
+        Console.WriteLine("---------------------------------------------------");
+
+        Program.teacherlist.FetchTeacherList();
+        MainMenu();
+    }
+
+    static void Logout(){
+        Console.Clear();
+        BackToMainMenu();
     }
 
     static void SelectType(RegistrationType type){
@@ -220,6 +318,7 @@ class Program {
 
         PrintTeacherStatistics();
     }
+
 
     static void PrintHeaderCurrentStudentRegistration(){
         Console.WriteLine(" Register : Current student ");

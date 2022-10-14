@@ -22,6 +22,7 @@ class StudentList {
                 , student.GetName(), student.GetSurName());
             }
         }
+         Console.ReadLine();
     }
 
     public void ShowTotalStudent(){

@@ -22,6 +22,7 @@ class TeacherList {
                 , teacher.GetName(), teacher.GetSurName());
             }
         }
+         Console.ReadLine();
     }
 
     public void ShowTotalTeacher(){
